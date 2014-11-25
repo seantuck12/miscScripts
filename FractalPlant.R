@@ -7,32 +7,32 @@
 
 createVector <- function(vec, dir, len, col)
 {
-	vec2 <- c((vec[1] + len * cos(dir)), (vec[2] + len * sin(dir)))
-	lines(x = c(vec[1],vec2[1]), y = c(vec[2],vec2[2]), type = "l", col = col)
-	return(vec2)
+    vec2 <- c((vec[1] + len * cos(dir)), (vec[2] + len * sin(dir)))
+    lines(x = c(vec[1],vec2[1]), y = c(vec[2],vec2[2]), type = "l", col = col)
+    return(vec2)
 }
 
 drawPlant <- function(vec, direction, length, n, direction2) 
 {
-	if(n > 0)
-	{
-		colour <- ifelse(n > 6,
-                     "brown",
-                     ifelse(n > 2, "dark green", "green")
-                     )
+    if(n > 0)
+    {
+        colour <- ifelse(n > 6,
+                         "brown",
+                         ifelse(n > 2, "dark green", "green")
+                         )
 
-		vec <- createVector(vec = vec, dir = direction, len = length, col = colour)
-		drawPlant(vec = vec, direction = (direction + direction2 * pi/4),
-              length = (length * 1.12/2), n = (n-1), direction2 = direction2)
+        vec <- createVector(vec = vec, dir = direction, len = length, col = colour)
+	drawPlant(vec = vec, direction = (direction + direction2 * pi/4),
+                  length = (length * 1.12/2), n = (n-1), direction2 = direction2)
 		
-    vec <- createVector(vec = vec, dir = (direction - pi/10), len = length, col = colour)
-		drawPlant(vec = vec, direction = (direction - direction2 * pi/4),
-              length = (length * 1.12/3), n = (n-1), direction2 = -direction2)
+	vec <- createVector(vec = vec, dir = (direction - pi/10), len = length, col = colour)
+	drawPlant(vec = vec, direction = (direction - direction2 * pi/4),
+                  length = (length * 1.12/3), n = (n-1), direction2 = -direction2)
 		
-    vec <- createVector(vec = vec, dir = direction, len = length, col = colour)
-		drawPlant(vec = vec, direction = direction,
-              length = (length * 1.12/2), n = (n-1), direction2 = direction2)
-	}	
+    	vec <- createVector(vec = vec, dir = direction, len = length, col = colour)
+	drawPlant(vec = vec, direction = direction,
+                  length = (length * 1.12/2), n = (n-1), direction2 = direction2)
+    }	
 }
 
 ## Draw the plant
